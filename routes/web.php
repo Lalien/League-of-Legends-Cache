@@ -25,3 +25,12 @@ Route::get('/add/{name?}', function($name) {
         return response('Player not Found', 404);
     }
 });
+
+Route::get('/get/{name?}', function($name) {
+    $summoner = new Player($name);
+    $summoner = $summoner->findPlayer();
+    if ($summoner) {
+        return response(json_encode($summoner), 200);
+    }
+    return response('Player not  Found', 404);
+});
